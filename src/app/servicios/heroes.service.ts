@@ -26,6 +26,13 @@ export class HeroesService {
       casa: "Marvel"
     },
     {
+      nombre: "Viuda Negra",
+      bio: "Amplia formación en operaciones militares, combatiente cuerpo a cuerpo, experta en artes marciales, envejecimiento lento, condición atlética, defensas psicológicas y el sistema inmunológico anormalmente superiores, hipnosis",
+      img: "assets/img/Black_Widow.png",
+      aparicion: "1964-04-01",
+      casa: "Marvel"
+    },
+    {
       nombre: "Hulk",
       bio: "Su principal poder es su capacidad de aumentar su fuerza hasta niveles prácticamente ilimitados a la vez que aumenta su furia. Dependiendo de qué personalidad de Hulk esté al mando en ese momento (el Hulk Banner es el más débil, pero lo compensa con su inteligencia).",
       img: "assets/img/hulk.png",
@@ -40,6 +47,13 @@ export class HeroesService {
       casa: "DC"
     },
     {
+      nombre: "Mujer Maravilla",
+      bio: "Super vuelo, súper fuerza, inmortalidad, factor de curación, super velocidad, reflejos, resistencia, brazaletes que repelen cualquier tipo de arma, habilidad de lucha altamente desarrollada y posee un lazo mágico, y una gran galería de armas como espadas de combate (sobre todo el uso de una versión mágica), el escudo y la tiara; En Los Nuevos 52, sus armas son creadas por Hefesto, el dios griego del fuego y herrero de los dioses, así como una versión de otro tipo de armas modernas fabricadas con el poder de los dioses.",
+      img: "assets/img/mujer_maravilla.png",
+      aparicion: "1941-12-01",
+      casa: "DC"
+    },
+    {
       nombre: "Spider-Man",
       bio: "Tras ser mordido por una araña radiactiva, obtuvo los siguientes poderes sobrehumanos, una gran fuerza, agilidad, poder trepar por paredes. La fuerza de Spider-Man le permite levantar 10 toneladas o más. Gracias a esta gran fuerza Spider-Man puede realizar saltos íncreibles. Un \"sentido arácnido\", que le permite saber si un peligro se cierne sobre él, antes de que suceda. En ocasiones este puede llevar a Spider-Man al origen del peligro.",
       img: "assets/img/spiderman.png",
@@ -51,6 +65,13 @@ export class HeroesService {
       bio: "En el universo ficticio de Marvel, Wolverine posee poderes regenerativos que pueden curar cualquier herida, por mortal que ésta sea, además ese mismo poder hace que sea inmune a cualquier enfermedad existente en la Tierra y algunas extraterrestres . Posee también una fuerza sobrehumana, que si bien no se compara con la de otros superhéroes como Hulk, sí sobrepasa la de cualquier humano.",
       img: "assets/img/wolverine.png",
       aparicion: "1974-11-01",
+      casa: "Marvel"
+    },
+    {
+      nombre: "Bruja Escarlata",
+      bio: "Alteración de Probabilidad: La Bruja Escarlata puede trastornar las probabilidadas de modo que ocurran acontecimientos improbables (pero no imposibles). Ésto puede incluir cortocircuítos en equipo mecánico, combustión espontánea de objetos inflamables, interrupción de campos de energía y transmisiones, etc. En una ocasión incluso logró romper la carcasa de adamantium de Ultrón. Contra energías o materiales no naturales, como aleaciones complejas o campos de fuerza, tiene una dificultad adicional. Wanda puede afectar las probabilidades de cualquier lugar que pueda ver directamente. Manipulación Mágica: Wanda aparentemente ha aprendido hechizos, incluyendo: Rayos de Eldritch, Escudos contra ataques místicos Telequinesis",
+      img: "assets/img/bruja-escarlata.png",
+      aparicion: "1964-01-01",
       casa: "Marvel"
     }
   	];
@@ -71,10 +92,14 @@ export class HeroesService {
   buscarHeroes(termino:string):Heroe[]{
     let heroesArr:Heroe[] = [];
     termino = termino.toLowerCase();
-    for(let heroe of this.heroes){
+    for(let i = 0; i < this.heroes.length; i++ ){
+      let heroe = this.heroes[i];
       let nombre = heroe.nombre.toLowerCase();
       if (nombre.indexOf(termino) >= 0)
+      {
+        heroe.idx = i;
         heroesArr.push(heroe);
+      }
     }
     return heroesArr;
   }
@@ -86,5 +111,6 @@ export interface Heroe{
 	img: string;
 	aparicion: string;
 	casa: string;
+  idx?: number;
 };
 
